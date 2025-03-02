@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Details</h1>
+    <p>Name: <span id="studentName"></span></p>
+    <p>UID: <span id="studentUid"></span></p>
+    <p>Email: <span id="studentEmail"></span></p>
+    
+
+    <h2>Borrowed Books</h2>
+    <table id="borrowedBooksTable">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Book UID</th>
+                <th>Borrowed Date</th>
+                <th>Expected Return Date</th>
+                <th>Actual Return Date</th>
+                <th>Fine</th>
+                <th>Status</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be inserted dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        window.onload = async function() {
+            // Retrieve the studentEntity from sessionStorage
+            const studentEntity = JSON.parse(sessionStorage.getItem('studentEntity'));
+
+            if (studentEntity) {
+                console.log(studentEntity);  // You can now access the whole studentEntity object
+                
+                // Display the student data on the page
+                document.getElementById('studentName').innerText = studentEntity.student_first_name + " " + studentEntity.student_last_name;
+                document.getElementById('studentUid').innerText = studentEntity.student_uid;
+                document.getElementById('studentEmail').innerText = studentEntity.email_id;
+                //document.getElementById('bookCount').innerText = studentEntity.issued_book_count;
+
+                // Fetch borrowed books
+                try {
+                    const response = await fetch('http://localhost:8080/student/getborrowedBooks', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const borrowedBooks = await response.json();
+                        console.log(borrowedBooks);  // Log the borrowed books for debugging
+
+                        // Populate the table with borrowed books
+                        const tableBody = document.getElementById('borrowedBooksTable').querySelector('tbody');
+                        borrowedBooks.forEach(book => {
+                            const row = document.createElement('tr');
+
+                            row.innerHTML = `
+                                <td>${book.transactionId}</td>
+                                <td>${book.bookUid}</td>
+                                <td>${book.borrowed_date || 'N/A'}</td>
+                                <td>${book.expected_return_date || 'N/A'}</td>
+                                <td>${book.actual_return_date || 'N/A'}</td>
+                                <td>${book.fine || '0'}</td>
+                                <td>${book.status || 'N/A'}</td>
+                                <td>${book.remark || 'N/A'}</td>
+                            `;
+
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        console.error('Failed to fetch borrowed books:', response.statusText);
+                        alert('Could not fetch borrowed books. Please try again later.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching borrowed books:', error);
+                    alert('An error occurred while fetching borrowed books. Please try again later.');
+                }
+            } else {
+                alert('No student data found. Please try logging in again.');
+                window.location.href = 'adminHome.html'; // Redirect to admin home if no data is found
+            }
+        };
+    </script>
+</body>
+</html>

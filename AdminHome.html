@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="AdminHome.css">
+</head>
+<body>
+    <h1>Welcome, <span id="librarianName"></span></h1>
+
+    <!-- Books Table -->
+    <h2>Library Books</h2>
+    <table id="booksTable">
+        <thead>
+            <tr>
+                <th>Serial no.</th>
+                <th>Book UID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Edition</th>
+                <th>ISBN Number</th>
+                <th>Genre</th>
+                <th>Language</th>
+                <th>Shelf Location</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Books will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <!-- Transactions Table -->
+    <h2>Past Transactions</h2>
+    <table id="transactionsTable">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Student UID</th>
+                <th>Book UID</th>
+                <th>Borrowed Date</th>
+                <th>Expected Return Date</th>
+                <th>Actual Return Date</th>
+                <th>Fine</th>
+                <th>Status</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Transactions will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <h2>Student List</h2>
+<table id="studentTable" border="1" style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>Student UID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Course ID</th>
+      <th>Roll No</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Date of Birth</th>
+      <th>Address</th>
+      <th>Issued Books</th>
+      <th>Registration Date</th>
+      <th>End Registration</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody id="studentTableBody">
+    <!-- Rows will be populated dynamically -->
+  </tbody>
+</table>
+
+
+    <script src="AdminHome.js"></script>
+</body>
+</html>

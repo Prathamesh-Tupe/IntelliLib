@@ -1,0 +1,14 @@
+h2 {
+    margin-top: 40px;
+    color: #4CAF50;
+    text-align: left;
+}
+
+table {
+    margin-bottom: 40px;
+    border: 1px solid black;
+}
+
+td{
+    border: 1px solid black;
+}
