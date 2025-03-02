@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="AdminAddBook.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Book</h1>
+        <form id="addBookForm">
+            <label for="bookUid">Book UID:</label>
+            <input type="text" id="bookUid" name="bookUid" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="publisher">Publisher:</label>
+            <input type="text" id="publisher" name="publisher" required>
+
+            <label for="edition">Edition:</label>
+            <input type="text" id="edition" name="edition" required>
+
+            <label for="isbn_number">ISBN Number:</label>
+            <input type="number" id="isbn_number" name="isbn_number" required>
+
+            <label for="genre">Genre ID:</label>
+            <input type="text" id="genre" name="genre" required>
+
+            <label for="book_language_id">Language ID:</label>
+            <input type="text" id="book_language_id" name="book_language_id" required>
+
+            <label for="shelf_location">Shelf Location:</label>
+            <input type="text" id="shelf_location" name="shelf_location" required>
+
+            <label for="book_price">Price:</label>
+            <input type="number" id="book_price" name="book_price" required>
+
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" required>
+
+            <button type="submit">Add Book</button>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+    <script src="AdminAddBook.js"></script>
+</body>
+</html>

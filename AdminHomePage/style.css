@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+
+body{
+    padding: 0px;
+    padding-top: 5px;
+    margin: 0px;
+    border: 5px solid rgb(255, 42, 138);
+    height: auto;
+}
+
+.navbar-1{
+    display: grid;
+    grid-template-columns: 0.5fr 0.7fr 2fr 1.5fr;
+    height: 80px;
+    margin: 0px 5px; 
+}
+
+#logo-img{
+    height: 80px;
+    margin-left: 20px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7em;
+    font-family: "Lexend", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+#user-name-text{
+   font-size: 3em;
+   font-family: "Kanit", serif;
+   font-weight: 500;
+   font-style: normal;
+}
+
+.input-search-bar{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 7px;
+}
+
+
+/* From Uiverse.io by 0xnihilism */ 
+.brutalist-container {
+    position: relative;
+    width: 250px;
+    height: 50px;
+    font-family: monospace;
+  }
+  
+  .brutalist-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: 4px solid #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 5px 5px 0 #000, 10px 10px 0 #ff7474;
+  }
+  
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .brutalist-input:focus {
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
+      glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  }
+  
+  .brutalist-input:focus::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: white;
+    z-index: -1;
+  }
+  
+  .brutalist-input:focus::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: -2;
+    clip-path: inset(0 100% 0 0);
+    animation: glitch-slice 4s steps(2, end) infinite;
+  }
+  
+  @keyframes glitch-slice {
+    0% {
+      clip-path: inset(0 100% 0 0);
+    }
+    10% {
+      clip-path: inset(0 5% 0 0);
+    }
+    20% {
+      clip-path: inset(0 80% 0 0);
+    }
+    30% {
+      clip-path: inset(0 10% 0 0);
+    }
+    40% {
+      clip-path: inset(0 50% 0 0);
+    }
+    50% {
+      clip-path: inset(0 30% 0 0);
+    }
+    60% {
+      clip-path: inset(0 70% 0 0);
+    }
+    70% {
+      clip-path: inset(0 15% 0 0);
+    }
+    80% {
+      clip-path: inset(0 90% 0 0);
+    }
+    90% {
+      clip-path: inset(0 5% 0 0);
+    }
+    100% {
+      clip-path: inset(0 100% 0 0);
+    }
+  }
+  
+  .brutalist-input:focus + .brutalist-label {
+    transform: rotate(0deg) scale(1.05);
+    background-color: #4a90e2;
+  }
+  
+  .smooth-type {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .smooth-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .smooth-type:focus::before {
+    opacity: 1;
+    animation: type-gradient 2s linear infinite;
+  }
+  
+  @keyframes type-gradient {
+    0% {
+      background-position: 300px 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .brutalist-input::placeholder {
+    color: #888;
+    transition: color 0.3s ease;
+  }
+  
+  .brutalist-input:focus::placeholder {
+    color: transparent;
+  }
+  
+  .brutalist-input:focus {
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  }
+  
+  @keyframes focus-pulse {
+    0%,
+    100% {
+      border-color: #000;
+    }
+    50% {
+      border-color: #4a90e2;
+    }
+  }
+
+  /* From Uiverse.io by 0xnihilism */ 
+  
+  .main-content-container{
+    background-color: rgb(245, 245, 245);
+    margin-top: 15px;
+    border-radius: 20px;
+    padding-left: 15px;
+    margin: 15px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr ;
+    height: auto;
+  }
+
+.greeting-user{
+    font-size: 3em;
+    font-family: "Kanit", serif;
+    font-weight: 400;
+    font-style: normal;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    align-items: center;
+ }
+
+ th,td{
+    border-bottom: 1px solid black;
+    padding: 15px 0px;
+    font-size: 0.8em;
+    text-align: center;
+    font-family: "Kanit", serif;
+    font-weight: 400;
+    font-style: normal;
+ }
+
+ th{
+  color: gray;
+ }
+ 
+ .table-1, .table-2{
+    background-color: white;
+    width: 700px;
+    height: 420px;
+    border-radius: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+ }
+
+ .table-1{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-left: 10px;
+ }
+
+ .table-2{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-left: 15px;
+ }
+
+ .table-1::-webkit-scrollbar, .table-2::-webkit-scrollbar {
+  display: none;
+}
+
+
+ .text{
+    padding: 15px;
+    padding-left: 25px;
+    padding-top: 25px;
+    font-family: "Kanit", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.7em;
+ }
+
+ #studentTable, #booksTable{
+  background-color: white;
+  height: auto;
+  width: 700px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding:2px 20px;
+ }
+
+
+ .button-container{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+ }
+
+ #add-student, #loginStudentButton, #total--visitors, #add-books{
+  background-color: white;
+  border-radius: 25px;
+  border: none;
+ }
+
+.add-student-button{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100px;
+  width: 250px;
+}
+
+.visitor-number{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-family: "Kanit", serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 3em;
+  padding-left: 8px;
+}
+
+.add-stu-img{
+  padding: 8px 15px;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.stu-add-logo{
+  width: 50%;
+  object-fit: cover;
+}
+
+.tol-visitor-text{
+  font-family: "Kanit", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5em;
+}
+
+
+.popular-books-container{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.pop-text{
+  font-family: "Kanit", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5em;
+}
+
+.pop-books-list{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  font-family: "Kanit", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2em;
+}
+
+.pop-book{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.borrowed-book-table-container{
+  background-color: lightblue;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  height: 300px;
+}
+
+.borrowed-book-table{
+  height: 300px;
+  overflow: scroll;
+}
+
+.overdue-book-table-container{
+  background-color: lightgreen;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  height: 300px;
+}

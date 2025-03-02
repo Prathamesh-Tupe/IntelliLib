@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--//---------- Start of Navbar  ----------//-->
+<div class="navbar-1">
+<div class="logo">
+    <img id="logo-img" src="Library-logo.png" alt="">
+</div>
+
+<div class="dashboard-text">Dashboard</div>
+
+<div class="input-search-bar">
+<div class="brutalist-container">
+  <input
+    placeholder="SEARCH BOOK"
+    class="brutalist-input smooth-type"
+    type="text"
+  />
+</div>
+
+</div>
+
+<div class="user-name">
+<span id="user-name-text"><span id="librarianName" style="color: rgb(255, 88, 88);"></span></span>
+</div>
+
+</div>
+<!--//---------- End of Navbar  ----------//-->
+
+<!--//---------- Start of Main Body  ----------//-->
+<div class="main-content-container">
+  <div class="greeting-user">
+    Hello, <span id="librarianName1" style="color: rgb(255, 88, 88);"></span>
+  </div>
+  
+  <div class="table-1">
+    <div class="text">
+        Student List
+    </div>
+    <table id="studentTable">
+        <thead>
+          <tr>
+            <th>Student UID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Issued Books</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <!-- Rows will be populated dynamically -->
+        </tbody>
+      </table>
+  </div>
+
+
+  <div class="table-2">
+    <div class="text">
+        Books List
+    </div>
+    <table id="booksTable">
+      <thead>
+          <tr>
+              <th>Book UID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Edition</th>
+              <th>Genre</th>
+              <th>Language</th>
+              <th>Shelf Location</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Books will be dynamically inserted here -->
+      </tbody>
+  </table>
+  </div>
+  <br>
+  <br>
+
+  <div class="button-container">
+    <button id="total--visitors">
+      <div class="add-student-button">
+      <span class="visitor-number">1223</span>
+      <div class="add-stu-img">
+        <img class="stu-add-logo" src="watching-phone-logo.webp">
+      </div>
+      <span class="tol-visitor-text">Total Visitor</span>
+      </div>
+    </button>
+
+  
+    <button id="add-student">
+      <div class="add-student-button">
+      <span id="visitor-number" class="visitor-number">0</span>
+      <div class="add-stu-img">
+        <img class="stu-add-logo" src="add-stu-img.webp">
+      </div>
+      <span class="tol-visitor-text">Total Student</span>
+      </div>
+    </button>
+
+
+    <button id="add-books">
+      <div class="add-student-button">
+      <span id="total-books" class="visitor-number">0</span>
+      <div class="add-stu-img">
+        <img class="stu-add-logo" src="Add-book-img.png">
+      </div>
+      <span class="tol-visitor-text">Total Books</span>
+      </div>
+    </button>
+    
+    <button id="loginStudentButton">
+      <div class="add-student-button">
+      <span class="visitor-number">0</span>
+      <div class="add-stu-img">
+        <img class="stu-add-logo" src="student-book-borrow.jpg">
+      </div>
+      <span class="tol-visitor-text">Books Borrwed</span>
+      </div>
+    </button>
+
+  </div>
+
+
+  <div class="popular-books-container">
+    <div class="pop-heading">
+     <span class="pop-text">Popular Choices</span>
+    </div>
+    <div class="pop-books-list">
+    <span class="pop-book">The atomic habits</span>
+    <span class="pop-book">The atomic habits</span>
+    <span class="pop-book">The atomic habits</span>
+    <span class="pop-book">The atomic habits</span>
+    <span class="pop-book">The atomic habits</span>
+    <span class="pop-book">The atomic habits</span>
+    </div>
+    
+  </div>
+
+  <div class="borrowed-book-table-container">
+    <div class="borrowed-book-table-heading">
+      Books Issued
+    </div>
+
+    <div class="borrowed-book-table">
+      <table id="transactionsTable">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Student UID</th>
+                <th>Book UID</th>
+                <th>Borrowed Date</th>
+                <th>Expected Return Date</th>
+                <th>Actual Return Date</th>
+                <th>Fine</th>
+                <th>Status</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Transactions will be dynamically inserted here -->
+        </tbody>
+    </table>
+    </div>
+  </div>
+
+
+  <div class="overdue-book-table-container">
+    <div class="overdue-book-table-heading">
+      Books Issued
+    </div>
+
+    <div class="overdue-book-table">
+      <table id="OverduetransactionsTable">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Student UID</th>
+                <th>Book UID</th>
+                <th>Borrowed Date</th>
+                <th>Expected Return Date</th>
+                <th>Actual Return Date</th>
+                <th>Fine</th>
+                <th>Status</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Transactions will be dynamically inserted here -->
+        </tbody>
+    </table>
+    </div>
+  </div>
+  
+
+</div>
+
+<!--//---------- End of Main Body  ----------//-->
+
+<script src="script.js"></script>    
+</body>
+</html>
