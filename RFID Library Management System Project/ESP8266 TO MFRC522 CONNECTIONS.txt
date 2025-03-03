@@ -1,0 +1,16 @@
+ESP8266   -->       MFRC522
+
+D2        ->        RST
+
+D4        ->        SDA
+  
+D5        ->        SCK
+
+D6        ->        MISO
+
+D7        ->        MOSI
+
+GND       ->         GND
+
+3V        ->         3V
+
