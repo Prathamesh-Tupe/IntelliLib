@@ -1,0 +1,230 @@
+Designing a **3NF database schema** for an **RFID-based Library Management System** involves several structured steps. Below is a detailed process to gather requirements, define entities, establish relationships, and normalize the database.
+
+---
+
+## **Step 1: Gather Requirements**
+
+To gather requirements, you need to understand the system's functionalities. Here are some essential steps:
+
+### **Key Questions to Ask:**
+1. **About Library Users:**
+   - Who are the users? (e.g., students, staff, administrators)
+   - What details need to be stored for each user? (e.g., name, ID, contact info)
+2. **About Books:**
+   - What information do you need to track for each book? (e.g., title, author, RFID tag, availability)
+   - Will there be multiple copies of a single book?
+3. **About Borrowing/Returning:**
+   - What details need to be recorded when a book is borrowed or returned? (e.g., user, book, date, due date, fines)
+4. **RFID Integration:**
+   - How will RFID be used? (e.g., for tracking books, automating check-ins/checkouts)
+5. **Library Operations:**
+   - Will the system manage reservations, fines, or overdue books?
+   - Are there specific privileges for different user types (e.g., staff vs. students)?
+
+### **Deliverables:**
+- List of entities (e.g., Users, Books, Transactions).
+- List of attributes for each entity.
+- Relationships between entities.
+
+---
+
+## **Step 2: Define Entities and Attributes**
+
+### **Entities and Sample Attributes:**
+
+1. **User**
+   - `UserID` (PK)
+   - `Name`
+   - `Email`
+   - `Phone`
+   - `UserType` (e.g., Student, Staff)
+   - `RegistrationDate`
+
+2. **Book**
+   - `BookID` (PK)
+   - `RFIDTag` (Unique ID for each book copy)
+   - `Title`
+   - `Author`
+   - `ISBN`
+   - `Publisher`
+   - `YearPublished`
+   - `Category` (e.g., Fiction, Science)
+
+3. **BorrowTransaction**
+   - `TransactionID` (PK)
+   - `UserID` (FK)
+   - `BookID` (FK)
+   - `BorrowDate`
+   - `DueDate`
+   - `ReturnDate` (nullable)
+   - `Fine` (if any)
+
+4. **FinePayment**
+   - `PaymentID` (PK)
+   - `TransactionID` (FK)
+   - `UserID` (FK)
+   - `AmountPaid`
+   - `PaymentDate`
+
+5. **Reservation**
+   - `ReservationID` (PK)
+   - `UserID` (FK)
+   - `BookID` (FK)
+   - `ReservationDate`
+   - `ExpirationDate`
+
+---
+
+## **Step 3: Establish Relationships**
+
+1. **Users and BorrowTransactions:**
+   - A user can borrow multiple books, but each transaction is linked to a single user.
+
+2. **Books and BorrowTransactions:**
+   - A book can be borrowed in multiple transactions over time.
+
+3. **Users and Reservations:**
+   - A user can reserve multiple books, but each reservation links to one book.
+
+---
+
+## **Step 4: Normalize the Database**
+
+### **Unnormalized Form (UNF):**
+Let’s assume a single table stores all the data:
+
+| UserID | Name  | BookID | Title         | BorrowDate | DueDate   | ReturnDate | Fine |
+|--------|-------|--------|---------------|------------|-----------|------------|------|
+| 1      | Alice | 101    | Data Science  | 2024-12-01 | 2024-12-15| 2024-12-14 | 0    |
+| 2      | Bob   | 102    | Algorithms    | 2024-12-02 | 2024-12-16| NULL       | 50   |
+
+### **1NF:**
+Break multi-valued attributes into atomic values.
+
+### **2NF:**
+Eliminate partial dependencies (e.g., separate `User` and `Book` data into distinct tables).
+
+### **3NF:**
+Remove transitive dependencies (e.g., ensure fine amounts are calculated directly from a `BorrowTransaction`).
+
+---
+
+## **Step 5: Final Schema Design (3NF)**
+
+### **Users Table**
+| **Column**       | **Type**       | **Constraints**      |
+|-------------------|----------------|-----------------------|
+| UserID           | INT            | Primary Key          |
+| Name             | VARCHAR(100)   | NOT NULL             |
+| Email            | VARCHAR(100)   | UNIQUE, NOT NULL     |
+| Phone            | VARCHAR(15)    | UNIQUE, NOT NULL     |
+| UserType         | ENUM           | NOT NULL             |
+| RegistrationDate | DATE           | DEFAULT CURRENT_DATE |
+
+### **Books Table**
+| **Column**       | **Type**       | **Constraints**      |
+|-------------------|----------------|-----------------------|
+| BookID           | INT            | Primary Key          |
+| RFIDTag          | VARCHAR(50)    | UNIQUE, NOT NULL     |
+| Title            | VARCHAR(200)   | NOT NULL             |
+| Author           | VARCHAR(100)   | NOT NULL             |
+| ISBN             | VARCHAR(13)    | UNIQUE, NOT NULL     |
+| Publisher        | VARCHAR(100)   | NULL                 |
+| YearPublished    | YEAR           | NOT NULL             |
+| Category         | VARCHAR(50)    | NULL                 |
+
+### **BorrowTransactions Table**
+| **Column**       | **Type**       | **Constraints**      |
+|-------------------|----------------|-----------------------|
+| TransactionID    | INT            | Primary Key          |
+| UserID           | INT            | Foreign Key          |
+| BookID           | INT            | Foreign Key          |
+| BorrowDate       | DATE           | NOT NULL             |
+| DueDate          | DATE           | NOT NULL             |
+| ReturnDate       | DATE           | NULL                 |
+| Fine             | DECIMAL(10, 2) | DEFAULT 0.00         |
+
+### **FinePayments Table**
+| **Column**       | **Type**       | **Constraints**      |
+|-------------------|----------------|-----------------------|
+| PaymentID        | INT            | Primary Key          |
+| TransactionID    | INT            | Foreign Key          |
+| UserID           | INT            | Foreign Key          |
+| AmountPaid       | DECIMAL(10, 2) | NOT NULL             |
+| PaymentDate      | DATE           | DEFAULT CURRENT_DATE |
+
+### **Reservations Table**
+| **Column**       | **Type**       | **Constraints**      |
+|-------------------|----------------|-----------------------|
+| ReservationID    | INT            | Primary Key          |
+| UserID           | INT            | Foreign Key          |
+| BookID           | INT            | Foreign Key          |
+| ReservationDate  | DATE           | DEFAULT CURRENT_DATE |
+| ExpirationDate   | DATE           | NOT NULL             |
+
+---
+
+## **Step 6: Implementation in SQL**
+
+```sql
+-- Create Users Table
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(15) UNIQUE NOT NULL,
+    UserType ENUM('Student', 'Staff') NOT NULL,
+    RegistrationDate DATE DEFAULT CURRENT_DATE
+);
+
+-- Create Books Table
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY AUTO_INCREMENT,
+    RFIDTag VARCHAR(50) UNIQUE NOT NULL,
+    Title VARCHAR(200) NOT NULL,
+    Author VARCHAR(100) NOT NULL,
+    ISBN VARCHAR(13) UNIQUE NOT NULL,
+    Publisher VARCHAR(100),
+    YearPublished YEAR NOT NULL,
+    Category VARCHAR(50)
+);
+
+-- Create BorrowTransactions Table
+CREATE TABLE BorrowTransactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    BookID INT,
+    BorrowDate DATE NOT NULL,
+    DueDate DATE NOT NULL,
+    ReturnDate DATE,
+    Fine DECIMAL(10, 2) DEFAULT 0.00,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+);
+
+-- Create FinePayments Table
+CREATE TABLE FinePayments (
+    PaymentID INT PRIMARY KEY AUTO_INCREMENT,
+    TransactionID INT,
+    UserID INT,
+    AmountPaid DECIMAL(10, 2) NOT NULL,
+    PaymentDate DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (TransactionID) REFERENCES BorrowTransactions(TransactionID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+-- Create Reservations Table
+CREATE TABLE Reservations (
+    ReservationID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    BookID INT,
+    ReservationDate DATE DEFAULT CURRENT_DATE,
+    ExpirationDate DATE NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+);
+```
+
+---
+
+This schema adheres to **3NF principles**, avoids redundancy, and ensures data integrity. It is scalable and supports typical library operations efficiently.
