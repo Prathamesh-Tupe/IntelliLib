@@ -115,7 +115,7 @@ addStudentButton.addEventListener("click", function() {
         sessionStorage.setItem('studentEntity', JSON.stringify(studentEntity));
 
         // Redirect to student.html after storing the data
-        window.location.href = 'student.html'; // Redirect to student.html
+        window.location.href = "../StudentFiles/student.html";
     })
     .catch(error => {
         console.error('Error fetching student data:', error);
