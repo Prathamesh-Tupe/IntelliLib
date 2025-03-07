@@ -42,13 +42,14 @@ async function fetchStudentData() {
   // Fetch data when the page loads
   window.onload = fetchStudentData;
 
-  
+  let allBooks = [];
 // Fetch books and populate the books table
 async function fetchBooks() {
     try {
         const response = await fetch('http://localhost:8080/library/librarian/getbooks');
         if (response.ok) {
             const books = await response.json();
+            allBooks=books;
             populateBooksTable(books);
         } else {
             console.error('Failed to fetch books. Status:', response.status);
@@ -57,6 +58,8 @@ async function fetchBooks() {
         console.error('Error fetching books:', error);
     }
 }
+
+
 
 function populateBooksTable(books) {
     const tableBody = document.querySelector('#booksTable tbody');
@@ -84,6 +87,43 @@ function populateBooksTable(books) {
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchBooks();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const searchInput = document.querySelector('.brutalist-input');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+       
+        searchResults.innerHTML = '';
+
+        if (!query) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        const filteredBooks = allBooks.filter(book =>
+            (book.title && book.title.toLowerCase().includes(query)) ||
+            (book.author && book.author.toLowerCase().includes(query))
+            
+        );
+
+        if (filteredBooks.length === 0) {
+            searchResults.innerHTML = '<div>No books found</div>';
+        } else {
+            filteredBooks.forEach(book => {
+                const bookItem = document.createElement('div');
+                bookItem.textContent = `${book.title} by ${book.author}`;
+                searchResults.appendChild(bookItem);
+            });
+        }
+
+        searchResults.style.display = 'block';
+    });
+
 });
 
 
@@ -181,8 +221,8 @@ function populateTransactionsTable(transactions) {
             <td>${transaction.bookUid}</td>
             <td>${transaction.borrowed_date || ''}</td>
             <td>${transaction.expected_return_date || ''}</td>
-            <td>${transaction.actual_return_date || ''}</td>
-            <td>${transaction.fine}</td>
+            
+           
             <td>${transaction.status}</td>
             <td>${transaction.remark}</td>
         `;
@@ -225,7 +265,7 @@ function populateTransactionsTable1(transactions) {
             <td>${transaction.bookUid}</td>
             <td>${transaction.borrowed_date || ''}</td>
             <td>${transaction.expected_return_date || ''}</td>
-            <td>${transaction.actual_return_date || ''}</td>
+            
             <td>${transaction.fine}</td>
             <td>${transaction.status}</td>
             <td>${transaction.remark}</td>

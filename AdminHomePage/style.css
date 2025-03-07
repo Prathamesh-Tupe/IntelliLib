@@ -18,13 +18,18 @@ body{
 }
 
 #logo-img{
-    height: 80px;
-    margin-left: 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .logo{
-    display: flex;
-    align-items: center;
+  height: 70px;
+  width: 70px;
+  margin-top: 7px;
+  margin-left: 20px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .dashboard-text{
@@ -222,6 +227,28 @@ body{
     }
   }
 
+
+  .search-results-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    display: none;
+    z-index: 1000;
+}
+
+.search-results-container div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.search-results-container div:hover {
+    background-color: #f1f1f1;
+}
+
   /* From Uiverse.io by 0xnihilism */ 
   
   .main-content-container{
@@ -412,24 +439,52 @@ body{
 }
 
 .borrowed-book-table-container{
-  background-color: lightblue;
+  margin-top: 50px;
+  background-color: white;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 6;
   grid-row-end: 7;
-  height: 300px;
+  height: 420px;
+  width: 700px;
+  border-radius: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .borrowed-book-table{
   height: 300px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .overdue-book-table-container{
-  background-color: lightgreen;
+  margin-top: 50px;
+  background-color: white;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 6;
   grid-row-end: 7;
-  height: 300px;
+  height: 420px;
+  width: 700px;
+  border-radius: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#transactionsTable, #OverduetransactionsTable{
+  width: 100%;
+}
+
+.overdue-book-table-container::-webkit-scrollbar,.borrowed-book-table-container::-webkit-scrollbar {
+  display: none;
+}
+
+.overdue-book-table-heading, .borrowed-book-table-heading{
+padding: 15px;
+padding-left: 25px;
+padding-top: 25px;
+font-family: "Kanit", serif;
+font-weight: 400;
+font-style: normal;
+font-size: 1.7em;
 }
