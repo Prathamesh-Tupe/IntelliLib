@@ -228,24 +228,27 @@ body{
   }
 
 
-  .search-results-container {
-    max-height: 300px;
+  .search-results {
+    max-height: 200px;
     overflow-y: auto;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: #ffffff;
     position: absolute;
-    width: 100%;
+    top: 100px;
+    width: 50%;
     display: none;
     z-index: 1000;
+    padding: 20px 10px;
+    border-radius: 20px;
 }
 
-.search-results-container div {
+.search-results div {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
 }
 
-.search-results-container div:hover {
+.search-results div:hover {
     background-color: #f1f1f1;
 }
 

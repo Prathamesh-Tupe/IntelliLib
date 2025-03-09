@@ -107,8 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const filteredBooks = allBooks.filter(book =>
             (book.title && book.title.toLowerCase().includes(query)) ||
-            (book.author && book.author.toLowerCase().includes(query))
-            
+            (book.author && book.author.toLowerCase().includes(query)) ||
+            (book.bookUid && book.bookUid.toLowerCase().includes(query)) ||
+            (book.book_language_id.book_language_name && book.book_language_id.book_language_name.toLowerCase().includes(query)) ||
+            (book.genre.genre_name && book.genre.genre_name.toLowerCase().includes(query))
         );
 
         if (filteredBooks.length === 0) {
@@ -116,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             filteredBooks.forEach(book => {
                 const bookItem = document.createElement('div');
-                bookItem.textContent = `${book.title} by ${book.author}`;
+                bookItem.innerHTML = `${book.title} by ${book.author} , Status : ${book.status} , Shelf Location : ${book.shelf_location}`;
                 searchResults.appendChild(bookItem);
             });
         }
